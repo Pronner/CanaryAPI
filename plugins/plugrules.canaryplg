@@ -1,0 +1,30 @@
+<--- plugrules written in CPK --->
+
+// pluginrules for Canary Plugins
+
+pkg CanaryAPI:Plugins _df_ cp
+
+namespace plugrules
+{
+
+   bool dp ==> |def1= cp.booldef | // creates a bool value importing the original bool from CanaryAPI:Plugins which is defined as "cp".
+   bool dpous ==> |def2= cp.acbool | // creates a bool value which imports the original bool from CanaryAPI:Plugins which is defined as "cp".
+
+   protected access enum => bool => rules()
+   {
+   
+      allowModif=dp, // "dp" stands for "depends", which tells Canary that it depends on the Plugin's Code rules. This tells Canary if it should obfuscate the plugin code or not.
+      allowSQL=false, // toggles MySQL on Plugins
+      allowMalicious=false, // toggles possibly unsafe plugins [set to false]
+      checkMalicious=true, // scans plugin code
+      accessCanaryground=true, // embeds plugin access to Canary Backgrounds/Foregrounds
+      enablePlugins=true,
+      checkForUpdates=dp, // "dp" stands for "depends", which tells Canary that it depends on the Plugin's Code rules.
+      accessExternalFiles=dpac, // "dpous" stands for "depend on user settings", which tells Canary that this rule depends on the User's settings.
+      useUserData=false, // toggles the rule of whether to use the User's Data or not
+      interruptInstances=false,
+      accessCanarywall=false // embeds plugin access to Canary Systems such as Chat System, Mail system, etc. This rule is currently disabled until we are able to assure your safety when having this enabled since right now it can be used excessively for abusive methods such as botting, scamming, etc.
+   }
+   
+   
+}
